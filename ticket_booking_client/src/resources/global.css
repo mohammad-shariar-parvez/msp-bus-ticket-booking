@@ -1,0 +1,41 @@
+/* heights and width */
+
+Input {
+	height: 40px;
+	border: 2px solid rgb(251, 41, 41);
+	width: 5%;
+	padding: 5px;
+	background-color: white !important;
+}
+
+/* .h-screen>Form {
+	width: 300px;
+	padding: 19px;
+	border: 2px solid gray;
+	box-shadow: 0 0 2px gray;
+	border-radius: 15px;
+} */
+
+.text-2xl {
+	font-size: 30px;
+}
+
+.text-xl {
+	font-size: 25px;
+}
+
+.text-lg {
+	font-size: 20px;
+}
+
+.text-md {
+	font-size: 18px;
+}
+
+.btn {
+	background-color: var(--primary);
+	color: white;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+}

@@ -1,0 +1,21 @@
+npx create-react-app ticket_booking_client
+
+npm start
+
+ npm i antd redux axios react-redux npm @reduxjs/toolkit 
+
+add cdn of boots trap , remix icon
+
+npm start
+
+add css min from antd
+
+
+-----------------------------------------
+server side 
+----------------------------------------
+npm init
+npm i express mongoose jsonwebtoken bcryptjs nodemailer nodemon dotenv
+
+mongodb
+-------------------------------------
