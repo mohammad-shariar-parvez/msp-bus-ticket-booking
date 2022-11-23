@@ -19,3 +19,14 @@ npm i express mongoose jsonwebtoken bcryptjs nodemailer nodemon dotenv
 
 mongodb
 -------------------------------------
+
+
+Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+ - options.allowedHosts[0] should be a non-empty string.
+
+  "options": {
+    "allowedHosts": [
+      "localhost",
+      ".localhost"
+    ],
+    "proxy": "https://localhost:5001/"

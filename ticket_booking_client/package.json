@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.24.2",
     "axios": "^1.1.3",
+    "cors": "^2.8.5",
     "npm": "^9.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -42,5 +43,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "options": {
+    "allowedHosts": [
+      "https://localhost:5001/",
+      ".localhost"
+    ],
+    "proxy": "https://localhost:5001/"
   }
 }
