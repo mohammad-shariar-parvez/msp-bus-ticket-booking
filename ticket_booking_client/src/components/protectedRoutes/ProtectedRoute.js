@@ -2,9 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { SetUser } from '../../redux/usersSlice';
 
 
 const ProtectedRoute = ({ children }) => {
+	const dispatch = useDispatch();
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
 
@@ -19,6 +22,7 @@ const ProtectedRoute = ({ children }) => {
 
 			if (response.data.success) {
 				setLoading(false);
+				dispatch(SetUser(response.data.data));
 
 			}
 			//have token but  userId meiyou	

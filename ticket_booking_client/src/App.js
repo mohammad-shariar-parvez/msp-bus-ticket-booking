@@ -2,6 +2,7 @@
 import 'antd/dist/antd.min.css';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Loader from './components/loaders/Loader';
 import ProtectedRoute from './components/protectedRoutes/ProtectedRoute';
 import PublicRoute from './components/publicRoutes/PublicRoute';
 import Home from './pages/Home';
@@ -15,6 +16,7 @@ const App = () => {
   console.log("I AM RHE APP KING");
   return (
     <div >
+      <Loader></Loader>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />

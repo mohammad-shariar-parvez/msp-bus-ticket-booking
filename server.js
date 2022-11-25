@@ -9,7 +9,7 @@ const cors = require('cors');
 
 const usersRoute = require('./routes/userRoute');
 
-
+// console.log('TOR nam KIIIIIIIIIIIII');
 
 app.use(cors());
 app.use(express.json());
@@ -20,7 +20,7 @@ app.get('/', (_, res) => {
 		name: 'SM',
 		email: 'Zubayer'
 	};
-
+	// console.log('Hitted');
 	res.json(obj);
 });
 
@@ -28,7 +28,8 @@ app.get('/', (_, res) => {
 // 	const message = error.message ? error.message : 'Server Error Occured2';
 // 	const status = error.status ? error.status : 500;
 // 	console.log('Error is o - ', error.message);
-// 	res.status(status).json({ message });
+// 	// res.status(500).send('Something broke!');
+// 	res.status(status).send({ message: "VAI EIDA KI ERROR RE" });
 // });
 
 app.listen(port, () => console.log(`listeningon pfshfy dsgdort ${port}`));

@@ -5,8 +5,8 @@ const { findOne } = require('../models/usersModel');
 const jwt = require('jsonwebtoken');
 const authMiddleware = require('../middlewares/authMiddleware');
 
-
 //register new user
+
 router.post('/register', async (req, res) => {
 	try {
 		console.log("REQUEST-", req.body);
@@ -39,8 +39,6 @@ router.post('/register', async (req, res) => {
 //LOGIN NEW USER
 
 router.post('/login', async (req, res) => {
-	// console.log(existedUser);
-
 	try {
 		const existedUser = await User.findOne({ email: req.body.email });
 		if (!existedUser) {
