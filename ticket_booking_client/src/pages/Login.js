@@ -4,17 +4,22 @@ import axios from 'axios';
 import { Button } from '../components/buttons/Button';
 import { Authentication } from '../components/forms/Authentication';
 import { FormSection } from '../components/forms/FormSection';
+import { useDispatch } from 'react-redux';
+import { HideLoading, Showloading } from '../redux/alertsSlice';
 
 
 
 const Login = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const onFinish = async (values) => {
 		console.log('Success:', values);
 
 		try {
+			dispatch(Showloading());
 			const response = await axios.post("http://localhost:5001/api/users/login", values);
+			dispatch(HideLoading());
 			// console.log('My registration message', response);
 			if (response.data.success) {
 				message.success(response.data.message);
@@ -25,6 +30,7 @@ const Login = () => {
 				message.error(response.data.message);
 			}
 		} catch (error) {
+			dispatch(HideLoading());
 			message.error(error.message);
 		}
 	};
@@ -33,6 +39,7 @@ const Login = () => {
 		<Authentication >
 			<FormSection login>
 				<h1 className='text-md' > Login</h1>
+
 				<Form layout='vertical'
 					onFinish={onFinish}
 					name="basic"

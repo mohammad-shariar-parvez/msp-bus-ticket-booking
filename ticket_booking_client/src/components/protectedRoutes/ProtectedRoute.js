@@ -2,44 +2,51 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SetUser } from '../../redux/usersSlice';
+import { HideLoading, Showloading } from '../../redux/alertsSlice';
+import DefaultLayout from '../defaultLayouts/DefaultLayout';
 
 
 const ProtectedRoute = ({ children }) => {
 	const dispatch = useDispatch();
-	const [loading, setLoading] = useState(true);
+	const { loading } = useSelector(state => state.alerts);
+
+	// const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
 
 	console.log("RUN IN  EVERY TIME", loading);
 	const validateToken = async () => {
 		try {
+			dispatch(Showloading());
 			const response = await axios.post("http://localhost:5001/api/users/get-user-by-id", {}, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('token')}`
 				}
 			});
 
+			dispatch(HideLoading());
 			if (response.data.success) {
-				setLoading(false);
+				// setLoading(false);
 				dispatch(SetUser(response.data.data));
 
 			}
 			//have token but  userId meiyou	
 			//NOOOO NEEED 
 			else {
-				console.log("came to part111111");
+
 				localStorage.removeItem('token');
-				setLoading(false);
 				navigate('/login');
 				message.error(response.data.message);
 			}
 		} catch (error) {
+			dispatch(HideLoading());
 			localStorage.removeItem('token');
-			console.log("came to part2222", error.message);
-			setLoading(false);
-			navigate('/login');
+
+
+
 			message.error(error.message);
+			navigate('/login');
 
 
 
@@ -53,13 +60,12 @@ const ProtectedRoute = ({ children }) => {
 		else {
 			navigate("/login");
 		}
-		console.log("RUN FROM USEEFFECT", loading);
 	}, []);
 
 	return (
 		<div>
 			{
-				loading ? <div>Loading</div> : <div>{children}</div>
+				!loading && <div><DefaultLayout>{children}</DefaultLayout></div>
 			}
 		</div>
 	);

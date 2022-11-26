@@ -1,26 +1,34 @@
 import { Checkbox, Form, Input, message } from 'antd';
 import { Button } from '../components/buttons/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Authentication } from '../components/forms/Authentication';
 import { FormSection } from '../components/forms/FormSection';
+import { useDispatch } from 'react-redux';
+import { HideLoading, Showloading } from '../redux/alertsSlice';
+
+
 const Register = () => {
-
-
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const onFinish = async (values) => {
 		// console.log('Success:', values);
 
 		try {
+			dispatch(Showloading());
 			const response = await axios.post("http://localhost:5001/api/users/register", values);
+			dispatch(HideLoading());
 			console.log('My registration message', response);
 			if (response.data.success) {
 				message.success(response.data.message);
+				// navigate('/');
 			}
 			else {
 				message.error(response.data.message);
 			}
 		} catch (error) {
+			dispatch(HideLoading());
 			message.error(error.message);
 		}
 	};

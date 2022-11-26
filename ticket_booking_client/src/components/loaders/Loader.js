@@ -2,10 +2,9 @@ import React from 'react';
 import { Space, Spin } from 'antd';
 const Loader = () => {
 	return (
-		<Space size="middle">
-
-			<Spin size="large" />
-		</Space>
+		<div className="spinner-parent" >
+			<Spin className="spinner-border1" size="large" />
+		</div>
 	);
 };
 
