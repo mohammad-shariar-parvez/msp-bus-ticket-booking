@@ -16,6 +16,11 @@ Input {
 	border-radius: 15px;
 } */
 
+i {
+	cursor: pointer;
+	font-size: 30px;
+}
+
 .text-2xl {
 	font-size: 30px;
 }
