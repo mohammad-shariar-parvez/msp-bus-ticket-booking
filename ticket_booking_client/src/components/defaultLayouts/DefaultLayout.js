@@ -1,10 +1,36 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import '../../resources/layout.css';
 
 const DefaultLayout = ({ children }) => {
 	const navigate = useNavigate();
 	const [colapsed, setColapsed] = useState(false);
+	const { user } = useSelector(state => state.users);
+
+	const userMenu = [
+		{
+			name: "Home",
+			icon: "ri-home-line",
+			path: "/",
+		},
+		{
+			name: "Bookings",
+			icon: "ri-file-list-line",
+			path: "/bookings",
+		},
+		{
+			name: "Profile",
+			icon: "ri-user-line",
+			path: "/profile",
+		},
+		{
+			name: "Logout",
+			icon: "ri-logout-box-line",
+			path: "/logout",
+		},
+	];
+
 	const adminMenu = [
 		{
 			name: "Home",
@@ -32,13 +58,17 @@ const DefaultLayout = ({ children }) => {
 			icon: "ri-logout-box-line",
 		},
 	];
-	// const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
-	const menuToBeRendered = adminMenu;
+	const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
+	// const menuToBeRendered = adminMenu;
 	let activeRoute = window.location.pathname;
 	return (
 		<div className='layout-parent' >
 			<div className='sidebar'>
-				<div className='d-flex flex-column gap-2'>
+				<div className='sidear-header' >
+					<h1 className='logo' >TicketBook</h1>
+					<h1 className='role'>{user?.name}<br />Role: {user?.isAdmin ? 'Admin' : 'User'}</h1>
+				</div>
+				<div className='d-flex flex-column gap-2 menu'>
 					{menuToBeRendered.map((item, index) => {
 						return <div className={`${activeRoute === item.path && "active-menu-item"
 							} menu-item`}>

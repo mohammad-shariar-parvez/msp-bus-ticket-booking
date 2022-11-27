@@ -21,13 +21,13 @@
 /* Check the uses of fllex item */
 .sidebar {
 
-	align-items: center;
+	/* align-items: center; */
 	background-color: var(--secondary);
 	border-radius: 5px;
 	display: flex;
 	justify-content: start;
-	padding: 0 20px;
-	/* flex-direction: column; */
+	padding: 15px 20px;
+	flex-direction: column;
 }
 
 .logo {

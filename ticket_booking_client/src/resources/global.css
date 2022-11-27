@@ -70,3 +70,8 @@ i {
 	/* height: 10px !important; */
 	/* width: 30px !important; */
 }
+
+h1 {
+	margin-bottom: 0 !important;
+	padding-bottom: 0 !important;
+}
