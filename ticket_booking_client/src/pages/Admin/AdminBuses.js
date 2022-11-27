@@ -11,7 +11,7 @@ const AdminBuses = () => {
 			<PageTitle title='Buses' />
 			<Button addBuss onClick={() => setShowBusForm(true)} >Add Bus</Button>
 
-			{showBusForm && <BusForm showBusForm={showBusForm} setShowBusForm={setShowBusForm} />}
+			{showBusForm && <BusForm showBusForm={showBusForm} setShowBusForm={setShowBusForm} type='add' />}
 		</div>
 	);
 };

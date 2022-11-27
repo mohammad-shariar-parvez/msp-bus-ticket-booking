@@ -8,17 +8,19 @@ const cors = require('cors');
 
 
 const usersRoute = require('./routes/userRoute');
+const busesRoute = require('./routes/busesRoute');
 
 // console.log('TOR nam KIIIIIIIIIIIII');
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/users', usersRoute);
+app.use('/api/buses', busesRoute);
 
 app.get('/', (_, res) => {
 	const obj = {
-		name: 'SM',
-		email: 'Zubayer'
+		name: 'PM',
+		email: 'MINISTER'
 	};
 	// console.log('Hitted');
 	res.json(obj);

@@ -9,7 +9,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 router.post('/register', async (req, res) => {
 	try {
-		console.log("REQUEST-", req.body);
+
 		const existingUser = await User.findOne({ email: req.body.email });
 		if (existingUser) {
 			return res.send({

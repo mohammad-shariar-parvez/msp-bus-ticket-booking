@@ -18,6 +18,7 @@ const BusForm = ({ showBusForm, setShowBusForm, type = 'add' }) => {
 			let response = null;
 			if (type === 'add') {
 				response = await axiosInstance.post("http://localhost:5001/api/buses/add-bus", values);
+				console.log("CHEEEEEK TYPWWWW", type);
 			}
 			else { }
 			if (response.data.success) {
@@ -44,7 +45,8 @@ const BusForm = ({ showBusForm, setShowBusForm, type = 'add' }) => {
 					</Col>
 					<Col lg={12} sx={24}>
 						<Form.Item label='Bus Number' name="number">
-							<InputNumber type='number' />
+
+							<Input />
 							{/* <input type="number" /> */}
 						</Form.Item>
 					</Col>
