@@ -5,28 +5,36 @@ import { axiosInstance } from '../../helpers/axiosInstance';
 import { useDispatch } from 'react-redux';
 import { HideLoading, Showloading } from '../../redux/alertsSlice';
 
-const BusForm = ({ showBusForm, setShowBusForm, type = 'add' }) => {
+const BusForm = ({ showBusForm, setShowBusForm, type = 'add', getData, selectedBus, setSelectedBus }) => {
 	const dispatch = useDispatch();
 	const handleCancel = () => {
+		setSelectedBus(null);
 		setShowBusForm(false);
 	};
 
 	const onFinish = async (values) => {
 		console.log("Form Value", values);
+		console.log("Form Value id", selectedBus._id);
 		try {
 			dispatch(Showloading());
 			let response = null;
 			if (type === 'add') {
 				response = await axiosInstance.post("http://localhost:5001/api/buses/add-bus", values);
-				console.log("CHEEEEEK TYPWWWW", type);
 			}
-			else { }
+			else {
+
+				response = await axiosInstance.post("http://localhost:5001/api/buses/update-bus", { ...values, _id: selectedBus._id });
+			}
 			if (response.data.success) {
 				message.success(response.data.message);
 			}
 			else {
 				message.error(response.data.message);
 			}
+			getData();
+			setShowBusForm(false);
+			setSelectedBus(null);
+			console.log("CHEEEEEK TYPWWWW", response);
 			dispatch(HideLoading());
 		} catch (error) {
 			message.error(error.message);
@@ -35,8 +43,12 @@ const BusForm = ({ showBusForm, setShowBusForm, type = 'add' }) => {
 	};
 
 	return (
-		<Modal width={800} title="Add Bus" open={showBusForm} onCancel={handleCancel} footer={false}>
-			<Form layout='vertical' onFinish={onFinish}>
+		<Modal width={800}
+			title={type == "add" ? "Add Bus" : "Update Bus"}
+			open={showBusForm}
+			onCancel={handleCancel}
+			footer={false}>
+			<Form layout='vertical' onFinish={onFinish} initialValues={selectedBus} >
 				<Row gutter={[10, 10]}>
 					<Col lg={24} sx={24}>
 						<Form.Item label='Bus Name' name="name">
@@ -69,6 +81,7 @@ const BusForm = ({ showBusForm, setShowBusForm, type = 'add' }) => {
 					<Col lg={8} sx={24}>
 						<Form.Item label='Journey Date' name="journeyDate">
 							<Input type='date' />
+
 							{/* <DatePicker /> */}
 						</Form.Item>
 					</Col>

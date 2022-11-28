@@ -10,12 +10,13 @@ import DefaultLayout from '../defaultLayouts/DefaultLayout';
 
 const ProtectedRoute = ({ children }) => {
 	const dispatch = useDispatch();
-	const { loading } = useSelector(state => state.alerts);
+	// const { loading } = useSelector(state => state.alerts);
+	const { user } = useSelector(state => state.users);
 
 	// const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
 
-	console.log("RUN IN  EVERY TIME", loading);
+
 	const validateToken = async () => {
 		try {
 			dispatch(Showloading());
@@ -65,7 +66,7 @@ const ProtectedRoute = ({ children }) => {
 	return (
 		<div>
 			{
-				!loading && <div><DefaultLayout>{children}</DefaultLayout></div>
+				user && <div><DefaultLayout>{children}</DefaultLayout></div>
 			}
 		</div>
 	);

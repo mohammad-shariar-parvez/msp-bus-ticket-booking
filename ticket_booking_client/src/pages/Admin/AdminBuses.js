@@ -1,17 +1,106 @@
-import React, { useState } from 'react';
+import { message, Table } from 'antd';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import BusForm from '../../components/busForms/BusForm';
 import { Button } from '../../components/buttons/Button';
 import PageTitle from '../../components/pageTitles/PageTitle';
+import { axiosInstance } from '../../helpers/axiosInstance';
+import { HideLoading, Showloading } from '../../redux/alertsSlice';
 
 const AdminBuses = () => {
 	const [showBusForm, setShowBusForm] = useState(false);
-	// console.log(showBusForm);
-	return (
-		<div className='d-flex justify-content-between'>
-			<PageTitle title='Buses' />
-			<Button addBuss onClick={() => setShowBusForm(true)} >Add Bus</Button>
+	const dispatch = useDispatch();
+	const [buses, setBuses] = useState([]);
+	const [selectedBus, setSelectedBus] = useState(null);
 
-			{showBusForm && <BusForm showBusForm={showBusForm} setShowBusForm={setShowBusForm} type='add' />}
+	const getBuses = async () => {
+		try {
+			dispatch(Showloading());
+			const response = await axiosInstance.post('http://localhost:5001/api/buses/get-all-buses', {});
+			dispatch(HideLoading());
+
+			//we can add store
+			if (response.data.success) {
+				console.log("SET bus is", response);
+				setBuses(response.data.data);
+			}
+			else {
+				message.error(response.data.message);
+			}
+		} catch (error) {
+			dispatch(HideLoading());
+			message.error(error.message);
+		}
+	};
+
+
+	const columns = [
+		{
+			title: "Name",
+			dataIndex: "name",
+		},
+		{
+			title: "Number",
+			dataIndex: "number",
+		},
+		{
+			title: "From",
+			dataIndex: "from",
+		},
+		{
+			title: "To",
+			dataIndex: "to",
+		},
+		{
+			title: "Journey Date",
+			dataIndex: "journeyDate",
+		},
+		{
+			title: "Status",
+			dataIndex: "status",
+		},
+		{
+			title: "Action",
+			dataIndex: "action",
+			render: (action, record) => (
+
+				<div className="d-flex gap-3">
+					<i class="ri-delete-bin-line"></i>
+					<i class="ri-pencil-line" onClick={() => {
+						console.log("REECOOORRRD", record);
+						setSelectedBus(record);
+						setShowBusForm(true);
+					}}></i>
+				</div>
+			)
+		},
+	];
+
+	useEffect(() => {
+		getBuses();
+	}, []);
+
+	return (
+		<div>
+			<div className='d-flex justify-content-between'>
+				<PageTitle title='Buses' />
+				<Button addBuss onClick={() => setShowBusForm(true)} >Add Bus</Button>
+
+			</div>
+			<Table dataSource={buses} columns={columns} />
+
+			{showBusForm && (
+				<BusForm
+					showBusForm={showBusForm}
+					setShowBusForm={setShowBusForm}
+					type={selectedBus ? 'edit' : 'add'}
+					selectedBus={selectedBus}
+					setSelectedBus={setSelectedBus}
+					getData={getBuses}
+
+				/>
+			)}
 		</div>
 	);
 };
