@@ -34,6 +34,25 @@ const AdminBuses = () => {
 		}
 	};
 
+	const deleteBus = async (id) => {
+		console.log("Buss delete work");
+		try {
+			dispatch(Showloading());
+			const response = await axiosInstance.post("http://localhost:5001/api/buses/delete-bus", {
+				_id: id,
+			});
+			dispatch(HideLoading());
+			if (response.data.success) {
+				message.success(response.data.message);
+				getBuses();
+			} else {
+				message.error(response.data.message);
+			}
+		} catch (error) {
+			dispatch(HideLoading());
+			message.error(error.message);
+		}
+	};
 
 	const columns = [
 		{
@@ -66,9 +85,13 @@ const AdminBuses = () => {
 			render: (action, record) => (
 
 				<div className="d-flex gap-3">
-					<i class="ri-delete-bin-line"></i>
+					<i class="ri-delete-bin-line"
+						onClick={() => {
+							console.log("DELETE ID", record._id);
+							deleteBus(record._id);
+						}}></i>
 					<i class="ri-pencil-line" onClick={() => {
-						console.log("REECOOORRRD", record);
+
 						setSelectedBus(record);
 						setShowBusForm(true);
 					}}></i>
@@ -76,7 +99,7 @@ const AdminBuses = () => {
 			)
 		},
 	];
-
+	// 2 ways to send record id , here we cant but for delete we can
 	useEffect(() => {
 		getBuses();
 	}, []);
