@@ -30,7 +30,7 @@ i {
 }
 
 .text-lg {
-	font-size: 20px;
+	font-size: 20px !important;
 }
 
 .text-md {
@@ -71,7 +71,19 @@ i {
 	/* width: 30px !important; */
 }
 
-h1 {
+.underline {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+h1, p {
 	margin-bottom: 0 !important;
 	padding-bottom: 0 !important;
+}
+
+.card {
+	/* border: 2px solid gray; */
+	box-shadow: 0 0 2px;
+	border-radius: 0;
+	padding: 10px;
 }

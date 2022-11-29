@@ -22,7 +22,7 @@ const Register = () => {
 			console.log('My registration message', response);
 			if (response.data.success) {
 				message.success(response.data.message);
-				// navigate('/');
+				navigate('/login');
 			}
 			else {
 				message.error(response.data.message);

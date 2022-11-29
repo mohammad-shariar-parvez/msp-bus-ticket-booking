@@ -13,8 +13,6 @@ const BusForm = ({ showBusForm, setShowBusForm, type = 'add', getData, selectedB
 	};
 
 	const onFinish = async (values) => {
-		console.log("Form Value", values);
-		console.log("Form Value id", selectedBus._id);
 		try {
 			dispatch(Showloading());
 			let response = null;
@@ -34,7 +32,6 @@ const BusForm = ({ showBusForm, setShowBusForm, type = 'add', getData, selectedB
 			getData();
 			setShowBusForm(false);
 			setSelectedBus(null);
-			console.log("CHEEEEEK TYPWWWW", response);
 			dispatch(HideLoading());
 		} catch (error) {
 			message.error(error.message);

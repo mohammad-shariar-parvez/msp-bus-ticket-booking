@@ -35,7 +35,7 @@ const AdminBuses = () => {
 	};
 
 	const deleteBus = async (id) => {
-		console.log("Buss delete work");
+
 		try {
 			dispatch(Showloading());
 			const response = await axiosInstance.post("http://localhost:5001/api/buses/delete-bus", {
@@ -87,7 +87,7 @@ const AdminBuses = () => {
 				<div className="d-flex gap-3">
 					<i class="ri-delete-bin-line"
 						onClick={() => {
-							console.log("DELETE ID", record._id);
+
 							deleteBus(record._id);
 						}}></i>
 					<i class="ri-pencil-line" onClick={() => {
