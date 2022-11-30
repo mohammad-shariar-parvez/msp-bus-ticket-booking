@@ -2,12 +2,14 @@ const router = require("express").Router();
 const Booking = require('../models/bookingsModel');
 const Bus = require('../models/busModal');
 const authMiddleware = require("../middlewares/authMiddleware");
+const stripe = require('stripe')(process.env.stripe_key);
+const { v4: uuidv4 } = require("uuid");
 
+//book seat
 router.post("/book-seat", authMiddleware, async (req, res) => {
 	try {
 		const newBooking = new Booking({
 			...req.body,
-			transactionId: "4566",
 			user: req.body.userId,
 		});
 		console.log("MAY BOOKING", newBooking);
@@ -33,5 +35,56 @@ router.post("/book-seat", authMiddleware, async (req, res) => {
 		});
 	}
 });
+
+//make payment
+router.post("/make-payment", authMiddleware, async (req, res) => {
+
+	try {
+		const { token, amount } = req.body;
+		const customer = await stripe.customers.create({
+			email: token.email,
+			source: token.id
+		});
+		console.log("Customer IS", customer);
+		const payment = await stripe.charges.create({
+			amount: amount,
+			currency: 'cny',
+			customer: customer.id,
+			receipt_email: token.email
+		}, {
+
+			idempotencyKey: uuidv4(),
+		});
+		console.log("PAYMENT IS", payment);
+		if (payment) {
+			res.status(200).send({
+				message: "Payment successful",
+				data: {
+					transactionId: payment.source.id
+				},
+				success: true,
+			});
+		}
+		else {
+			res.status(500).send({
+				message: "Payment Failed",
+				data: error,
+				seatsBooked: bus.seatsBooked,
+				success: false,
+			});
+		}
+
+
+	} catch (error) {
+		console.log(error);
+		res.status(500).send({
+			message: "Payment failed",
+			data: error,
+			success: false,
+		});
+	}
+
+});
+
 
 module.exports = router;

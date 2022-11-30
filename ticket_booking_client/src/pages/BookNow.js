@@ -8,6 +8,7 @@ import { axiosInstance } from '../helpers/axiosInstance';
 import { useParams } from 'react-router-dom';
 import SeatSelection from '../components/seatSelections/SeatSelection';
 import { Button } from '../components/buttons/Button';
+import StripeCheckout from 'react-stripe-checkout';
 
 
 const BookNow = () => {
@@ -40,20 +41,44 @@ const BookNow = () => {
 		}
 	};
 
-	const bookNow = async () => {
+	const bookNow = async (transactionId) => {
 		try {
 			dispatch(Showloading());
 			const response = await axiosInstance.post("http://localhost:5001/api/bookings/book-seat", {
 				bus: bus._id,
-				seats: selectedSeats
+				seats: selectedSeats,
+				transactionId
 			});
 			// bus.seatsBooked = response.data.seatsBooked;
 			// console.log("Selected seats", response.data.seatsBooked);
-			getBus();
+			// getBus();
 
 			dispatch(HideLoading());
 			if (response.data.success) {
 				message.success(response.data.message);
+			}
+			else {
+				message.error(response.data.message);
+			}
+		} catch (error) {
+			dispatch(HideLoading());
+			message.error(error.message);
+		}
+	};
+
+	const onToken = async (token) => {
+		// console.log("TOKEN IS ", token);
+		try {
+			dispatch(Showloading());
+			const response = await axiosInstance.post('http://localhost:5001/api/bookings/make-payment', {
+				token,
+				amount: bus.fare * selectedSeats.length * 100
+			});
+			// console.log("RESPOMSE OF TOKEEEN", response);
+			dispatch(HideLoading());
+			if (response.data.success) {
+				message.success(response.data.message);
+				bookNow(response.data.data.transactionId);
 			}
 			else {
 				message.error(response.data.message);
@@ -103,12 +128,20 @@ const BookNow = () => {
 								Selected Seats : {selectedSeats.join(",")}
 							</h1>
 							<h1 className="text-xl ">
-								Fare : {bus.fare * selectedSeats.length}
+								Fare: ¥ {bus.fare * selectedSeats.length}
 							</h1>
 						</div>
 						<hr />
 
-						<Button disabled={selectedSeats.length === 0} onClick={bookNow}  >Book Now</Button>
+						<StripeCheckout
+							billingAddress
+							token={onToken}
+							currency="CNY"
+							amount={bus.fare * selectedSeats.length * 100}
+							stripeKey="pk_test_51JwmkHK0zRpRkYqiEreyEFMc9EoLDBExVpaDUxBaKnKJoI1xjZSUXK3pNjIPDsUvRMK5FuudjD2UShE9T1jilvRM00LvgIeFXT"
+						>
+							<Button disabled={selectedSeats.length === 0} >Book Now</Button>
+						</StripeCheckout>
 						{/* <button
 							className={`primary-btn ${selectedSeats.length === 0 && "disabled-btn"
 								}`}
