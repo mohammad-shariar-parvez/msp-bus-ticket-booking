@@ -95,7 +95,7 @@ const BookNow = () => {
 		<div>
 			{
 				bus &&
-				(<Row className='mt-3' gutter={20}>
+				(<Row className='mt-3' gutter={[30, 30]}>
 					<Col lg={12} sm={24} xs={24}>
 						<h1 className="text-xl text-secondary">{bus.name}</h1>
 						<h1 className="text-md">{bus.from} - {bus.to}</h1>

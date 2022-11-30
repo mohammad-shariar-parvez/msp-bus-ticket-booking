@@ -22,7 +22,6 @@ const AdminBuses = () => {
 
 			//we can add store
 			if (response.data.success) {
-				console.log("SET bus is", response);
 				setBuses(response.data.data);
 			}
 			else {

@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import './resources/global.css';
 import BookNow from './pages/BookNow';
+import Bookings from './pages/Bookings';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path='/book-now/:id' element={<ProtectedRoute><BookNow /></ProtectedRoute>} />
+          <Route path='/bookings' element={<ProtectedRoute><Bookings /></ProtectedRoute>} />
           <Route path='/admin' element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path='/admin/buses' element={<ProtectedRoute><AdminBuses /></ProtectedRoute>} />
           <Route path='/admin/users' element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />

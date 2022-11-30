@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Bus = ({ bus }) => {
 	const navigate = useNavigate();
-	console.log("MY ALL buss", bus);
 	return (
 		<div className='card '>
 			<h1 className='text-lg'>{bus.name}</h1>

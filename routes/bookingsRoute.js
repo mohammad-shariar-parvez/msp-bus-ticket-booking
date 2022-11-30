@@ -87,4 +87,26 @@ router.post("/make-payment", authMiddleware, async (req, res) => {
 });
 
 
+//get bookings by user id
+
+router.post("/get-bookings-by-user-id", authMiddleware, async (req, res) => {
+	try {
+		const bookings = await Booking.find({ userId: req.body.userId })
+			.populate("bus")
+			.populate("user");
+		res.status(200).send({
+			message: "Booking Fetch Successful",
+			data: bookings,
+			success: true,
+		});
+	} catch (error) {
+		res.status(500).send({
+			message: "Booking Fetch failed",
+			data: error,
+			success: false,
+		});
+	}
+});
+
+
 module.exports = router;

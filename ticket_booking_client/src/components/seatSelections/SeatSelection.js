@@ -4,8 +4,6 @@ import '../../resources/bus.css';
 
 const SeatSelection = ({ selectedSeats, setSelectedSeats, bus }) => {
 	const capacity = bus.capacity;
-	console.log("CAPAACITY", bus.seatsBooked);
-
 
 	const selectOrUnselectSeats = (seatNumber) => {
 
@@ -19,7 +17,7 @@ const SeatSelection = ({ selectedSeats, setSelectedSeats, bus }) => {
 
 
 	return (
-		<div>
+		<div className='mx-5'>
 
 			<div className="bus-container">
 				<Row gutter={[10, 10]}>
