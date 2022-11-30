@@ -1,10 +1,11 @@
 import { Col, Row } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../resources/bus.css';
 
 const SeatSelection = ({ selectedSeats, setSelectedSeats, bus }) => {
 	const capacity = bus.capacity;
-	console.log("CAPAACITY", bus.capacity);
+	console.log("CAPAACITY", bus.seatsBooked);
+
 
 	const selectOrUnselectSeats = (seatNumber) => {
 
@@ -14,6 +15,8 @@ const SeatSelection = ({ selectedSeats, setSelectedSeats, bus }) => {
 			setSelectedSeats([...selectedSeats, seatNumber]);
 		}
 	};
+
+
 
 	return (
 		<div>
@@ -25,6 +28,9 @@ const SeatSelection = ({ selectedSeats, setSelectedSeats, bus }) => {
 						let seatClass = '';
 						if (selectedSeats.includes(seat + 1)) {
 							seatClass = 'selected-seat';
+						}
+						else if (bus.seatsBooked.includes(seat + 1)) {
+							seatClass = 'booked-seat';
 						}
 						return (<Col key={index} span={6} >
 							<div className={`seat ${seatClass}`} onClick={() => selectOrUnselectSeats(seat + 1)} >

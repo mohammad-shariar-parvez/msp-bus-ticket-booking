@@ -18,3 +18,10 @@
 	background-color: rgb(127, 68, 255);
 	color: white;
 }
+
+.booked-seat {
+	background-color: gray;
+	color: white;
+	pointer-events: none !important;
+	cursor: disabled !important;
+}

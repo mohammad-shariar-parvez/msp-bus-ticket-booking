@@ -25,5 +25,5 @@ const userScema = new mongoose.Schema(
 	}
 );
 
-console.log("MONGOOSE TEST", mongoose.model('users', userScema));
+console.log("MONG1OOSE TEST", mongoose.model('users', userScema));
 module.exports = mongoose.model('users', userScema);

@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
 			});
 		}
 		const decoded = jwt.verify(token, process.env.jwt_secret);
-		console.log("Decoded is", decoded);
+		// console.log("Decoded is", decoded);
 		req.body.userId = decoded.userId;
 
 		next();
