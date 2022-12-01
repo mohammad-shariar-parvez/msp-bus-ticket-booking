@@ -27,7 +27,10 @@ const Bus = ({ bus }) => {
 					<p className="text-sm">Journey Date </p>
 					<p className="text-sm">$ {bus.journeyDate} </p>
 				</div>
-				<h1 className='text-lg  underline' onClick={() => navigate(`/book-now/${bus._id}`)} >Book NOw</h1>
+
+				<div>
+					<h1 className='text-lg  underline' onClick={() => navigate(`/book-now/${bus._id}`)} >Book Now</h1>
+				</div>
 			</div>
 		</div>
 	);

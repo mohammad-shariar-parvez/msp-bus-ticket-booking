@@ -62,6 +62,7 @@ const ProtectedRoute = ({ children }) => {
 			navigate("/login");
 		}
 	}, []);
+	console.log("THIS IS USER AFAILABLE", user);
 
 	return (
 		<div>

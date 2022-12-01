@@ -43,8 +43,8 @@ const Home = () => {
 
 			</div>
 			<div>
-				<Row>
-					{buses.map(bus => (
+				<Row gutter={[15, 15]}>
+					{buses.filter(bus => bus.status === "Yet To Start").map(bus => (
 						<Col key={bus._id} lg={12} sm={24} xs={24}  >
 							<Bus bus={bus} />
 						</Col>

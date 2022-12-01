@@ -55,6 +55,22 @@
 	gap: 15px;
 }
 
+
+.menu-item-colapsed {
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	padding: 5px 5px;
+
+	width: 30px;
+	cursor: pointer;
+	transition: 0.2s;
+	gap: 15px;
+	box-sizing: border-box;
+}
+
+
 .active-menu-item {
 	border: 2px solid white;
 	border-radius: 5px;

@@ -15,10 +15,8 @@ Input {
 	box-shadow: 0 0 2px gray;
 	border-radius: 15px;
 } */
-
-i {
-	cursor: pointer;
-	font-size: 30px;
+.ant-form-item {
+	margin: 0 !important;
 }
 
 .text-2xl {

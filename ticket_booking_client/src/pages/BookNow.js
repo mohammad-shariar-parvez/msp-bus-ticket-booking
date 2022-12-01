@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Bus from '../components/buses/Bus';
 import { axiosInstance } from '../helpers/axiosInstance';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import SeatSelection from '../components/seatSelections/SeatSelection';
 import { Button } from '../components/buttons/Button';
 import StripeCheckout from 'react-stripe-checkout';
@@ -16,6 +16,7 @@ const BookNow = () => {
 	const dispatch = useDispatch();
 	const [bus, setBus] = useState(null);
 	const params = useParams();
+	const navigate = useNavigate();
 
 
 
@@ -56,6 +57,7 @@ const BookNow = () => {
 			dispatch(HideLoading());
 			if (response.data.success) {
 				message.success(response.data.message);
+				navigate("/bookings");
 			}
 			else {
 				message.error(response.data.message);

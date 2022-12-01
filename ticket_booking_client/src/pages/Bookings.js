@@ -155,8 +155,6 @@ const Bookings = () => {
 							{selectedBooking.fare * selectedBooking.seats.length} /-
 						</p>
 						<div>
-
-
 						</div>
 
 					</div>

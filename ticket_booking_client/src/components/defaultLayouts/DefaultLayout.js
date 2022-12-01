@@ -69,14 +69,23 @@ const DefaultLayout = ({ children }) => {
 		<div className='layout-parent' >
 			<div className='sidebar'>
 				<div className='sidear-header' >
-					<h1 className='logo' >TicketBook</h1>
+					{!colapsed && <h1 className='logo' >TicketBook</h1>}
+
 					<h1 className='role'>{user?.name}<br />Role: {user?.isAdmin ? 'Admin' : 'User'}</h1>
 				</div>
 				<div className='d-flex flex-column gap-2 menu'>
 					{menuToBeRendered.map((item, index) => {
-						return <div className={`${activeRoute === item.path && "active-menu-item"
-							} menu-item`}>
-							<i className={item.icon}></i>
+						return <div className={`${activeRoute === item.path && "active-menu-item"}  ${colapsed ? "menu-item-colapsed " : "menu-item"}`}>
+							{!colapsed ? (< i className={item.icon}  ></i>) :
+								< i className={item.icon} onClick={() => {
+									if (item.path == '/logout') {
+										navigate('/login');
+										localStorage.removeItem('token');
+									}
+									else {
+										navigate(item.path);
+									}
+								}} ></i>}
 							{!colapsed && (
 								<span onClick={() => {
 									if (item.path == '/logout') {
