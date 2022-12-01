@@ -20,6 +20,7 @@
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
     "react-stripe-checkout": "^2.6.3",
+    "react-to-print": "^2.14.10",
     "stripe": "^11.1.0",
     "uuid": "^9.0.0"
   }
