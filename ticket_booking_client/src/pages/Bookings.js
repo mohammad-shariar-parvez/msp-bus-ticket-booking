@@ -18,13 +18,20 @@ const Bookings = () => {
 	const [showPrintModal, setShowPrintModal] = useState(false);
 	const [selectedBooking, setSelectedBooking] = useState(null);
 
-	console.log("SSEELECTED BOOKING", selectedBooking);
+	// console.log("SSEELECTED BOOKING", selectedBooking);
+	// const axiosInstance = axios.create({
+	// 	headers: {
+	// 		Authorization: `Bearer ${localStorage.getItem('token')}`
+	// 	}
+	// });
 
 	const getBookings = async () => {
+
 		try {
 			dispatch(Showloading());
 			const response = await axiosInstance.post('http://localhost:5001/api/bookings/get-bookings-by-user-id', {});
 			dispatch(HideLoading());
+
 
 			//we can add store
 			if (response.data.success) {

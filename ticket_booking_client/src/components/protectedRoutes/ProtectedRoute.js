@@ -43,9 +43,6 @@ const ProtectedRoute = ({ children }) => {
 		} catch (error) {
 			dispatch(HideLoading());
 			localStorage.removeItem('token');
-
-
-
 			message.error(error.message);
 			navigate('/login');
 
@@ -62,7 +59,7 @@ const ProtectedRoute = ({ children }) => {
 			navigate("/login");
 		}
 	}, []);
-	console.log("THIS IS USER AFAILABLE", user);
+	// console.log("THIS IS USER AFAILABLE", user);
 
 	return (
 		<div>

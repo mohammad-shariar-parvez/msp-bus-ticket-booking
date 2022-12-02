@@ -10,6 +10,8 @@ import { axiosInstance } from '../helpers/axiosInstance';
 import Bus from '../components/buses/Bus';
 import { Button } from '../components/buttons/Button';
 
+console.log("AXIOSSSSSS", axiosInstance);
+
 
 
 const Home = () => {
@@ -51,7 +53,11 @@ const Home = () => {
 
 		try {
 			dispatch(Showloading());
-			const response = await axiosInstance.post('http://localhost:5001/api/buses/get-all-buses', all);
+			const response = await axios.post('http://localhost:5001/api/buses/get-all-buses', all, {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('token')}`
+				}
+			});
 			dispatch(HideLoading());
 
 			//we can add store
@@ -59,10 +65,12 @@ const Home = () => {
 				setBuses(response.data.data);
 			}
 			else {
+				message.error("error.message-2");
 				message.error(response.data.message);
 			}
 		} catch (error) {
 			dispatch(HideLoading());
+			message.error("error.message-3");
 			message.error(error.message);
 		}
 	};

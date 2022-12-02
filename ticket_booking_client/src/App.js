@@ -20,7 +20,7 @@ import './resources/global.css';
 
 const App = () => {
   const { loading } = useSelector(state => state.alerts);
-  console.log("I AM RHE APP KING", loading);
+  // console.log("I AM RHE APP KING", loading);
 
   return (
     <div className='main-bg' >
