@@ -23,18 +23,35 @@ const Home = () => {
 		setFilters({ ...filters, [e.target.name]: e.target.value });
 	};
 
-	console.log("Search is", filters);
+	const getFiltered = () => {
 
-	const getBuses = async () => {
 		const tempFilters = {};
 		Object.keys(filters).forEach(key => {
 			if (filters[key]) {
 				tempFilters[key] = filters[key];
 			}
 		});
+
+		getBuses(tempFilters);
+	};
+
+	const clearHandler = () => {
+		console.log('clear');
+		setFilters({
+			from: "",
+			to: "",
+			journeyDate: "",
+		});
+		getBuses();
+	};
+
+	console.log("Search is", filters);
+
+	const getBuses = async (all = {}) => {
+
 		try {
 			dispatch(Showloading());
-			const response = await axiosInstance.post('http://localhost:5001/api/buses/get-all-buses', {});
+			const response = await axiosInstance.post('http://localhost:5001/api/buses/get-all-buses', all);
 			dispatch(HideLoading());
 
 			//we can add store
@@ -54,8 +71,8 @@ const Home = () => {
 	}, []);
 	return (
 		<div >
-			<div className='my-3 card p2'>
-				<Row gutter={10}>
+			<div className='my-3  px-2 py-3'>
+				<Row gutter={10} align='center' >
 					<Col lg={6} sm={24}>
 						<Input
 
@@ -87,7 +104,11 @@ const Home = () => {
 						/>
 					</Col>
 					<Col lg={6} sm={24}>
-						<Button search onClick={() => getBuses()}> Filter</Button>
+						<div className="d-flex gap-2">
+							<Button search onClick={getFiltered}> Filter</Button>
+							<Button clear onClick={clearHandler}> Clear</Button>
+
+						</div>
 					</Col>
 				</Row>
 			</div>

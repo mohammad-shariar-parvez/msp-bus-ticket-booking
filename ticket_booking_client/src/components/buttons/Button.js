@@ -10,10 +10,10 @@ export const Button = styled.button`
 		(props.reset && 'gray') ||
 		(props.search && 'skyBlue') || '#D23F57'} ;
 	color: white;
-	border-radius: ${props => (props.search && '0') || '5px'} ;
+	border-radius: ${props => ((props.search || props.clear) && '0') || '5px'} ;
 
-	padding: ${props => (props.search && '7px 20px') || '10px 20px'} ;
-	margin:${props => (props.search && '0px') || '10px'} ;
+	padding: ${props => ((props.search || props.clear) && '7px 20px') || '10px 20px'} ;
+	margin:${props => ((props.search || props.clear) && '0px') || '10px'} ;
 
 	cursor: pointer;
 	border:none ;

@@ -28,7 +28,7 @@ router.post("/add-bus", authMiddleware, async (req, res) => {
 router.post("/get-all-buses", authMiddleware, async (req, res) => {
 	console.log("Chjeck projantontop", req.body);
 	try {
-		const buses = await Bus.find(req.body);
+		const buses = await Bus.find(req.body, req.body.tempFilters);
 		return res.status(200).send({
 			success: true,
 			message: "Buses fetched successfully",
