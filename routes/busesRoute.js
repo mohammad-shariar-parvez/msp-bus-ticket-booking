@@ -26,6 +26,7 @@ router.post("/add-bus", authMiddleware, async (req, res) => {
 
 // get-all-buses
 router.post("/get-all-buses", authMiddleware, async (req, res) => {
+	console.log("Chjeck projantontop", req.body);
 	try {
 		const buses = await Bus.find(req.body);
 		return res.status(200).send({
@@ -40,9 +41,10 @@ router.post("/get-all-buses", authMiddleware, async (req, res) => {
 
 // update bus
 router.post("/update-bus", authMiddleware, async (req, res) => {
+	console.log("From Update bus", req.body);
 	try {
 		const buses = await Bus.findByIdAndUpdate(req.body._id, req.body);
-
+		console.log(" wooo ai nniiii", buses);
 		return res.status(200).send({
 			success: true,
 			message: "Buse updatedy successfully",

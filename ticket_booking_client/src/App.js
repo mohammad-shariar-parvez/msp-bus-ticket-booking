@@ -15,6 +15,7 @@ import Register from './pages/Register';
 import './resources/global.css';
 import BookNow from './pages/BookNow';
 import Bookings from './pages/Bookings';
+import './resources/global.css';
 
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
   console.log("I AM RHE APP KING", loading);
 
   return (
-    <div >
+    <div className='main-bg' >
       {loading && <Loader />}
 
       <BrowserRouter>
