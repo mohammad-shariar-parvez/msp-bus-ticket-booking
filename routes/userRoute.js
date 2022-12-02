@@ -48,6 +48,13 @@ router.post('/login', async (req, res) => {
 				data: null
 			});
 		}
+		if (existedUser.isBlocked) {
+			return res.send({
+				message: 'Your Account is Blocked, please contact to admin',
+				success: false,
+				data: null
+			});
+		}
 
 		const matchedPassword = await bcrypt.compare(req.body.password, existedUser.password);
 
@@ -90,7 +97,7 @@ router.post('/get-user-by-id', authMiddleware, async (req, res) => {
 		});
 
 	} catch (error) {
-		console.log("USER FETCH ERRORS");
+
 		res.status(401).send({
 			message: 'UNAUTHORISED',
 			success: false,
@@ -99,5 +106,43 @@ router.post('/get-user-by-id', authMiddleware, async (req, res) => {
 	}
 });
 
+router.post('/get-all-users', authMiddleware, async (req, res) => {
+
+	try {
+		const users = await User.find({});
+
+		res.status(200).send({
+			message: "Users fetched successfully",
+			success: true,
+			data: users,
+		}
+		);
+	} catch (error) {
+		res.status(400).send({
+			message: "Users fetched Usuccessfully",
+			success: false,
+			data: null
+
+		});
+	}
+});
+
+
+//UPDATE USER
+router.post("/update-user-permissions", authMiddleware, async (req, res) => {
+
+	console.log(" MAKE USER PERMISSION", req.body);
+	try {
+		const users = await User.findByIdAndUpdate(req.body._id, req.body);
+		console.log(" wooo ai nniiii", users);
+		return res.status(200).send({
+			success: true,
+			message: "User permission updated successfully",
+			data: null,
+		});
+	} catch (error) {
+		res.status(500).send({ success: false, message: error.message });
+	}
+});
 module.exports = router
 
