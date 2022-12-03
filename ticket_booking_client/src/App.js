@@ -16,6 +16,7 @@ import './resources/global.css';
 import BookNow from './pages/BookNow';
 import Bookings from './pages/Bookings';
 import './resources/global.css';
+import Profile from './pages/Profile';
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
           <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path='/book-now/:id' element={<ProtectedRoute><BookNow /></ProtectedRoute>} />
           <Route path='/bookings' element={<ProtectedRoute><Bookings /></ProtectedRoute>} />
+          <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path='/admin' element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path='/admin/buses' element={<ProtectedRoute><AdminBuses /></ProtectedRoute>} />
           <Route path='/admin/users' element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />

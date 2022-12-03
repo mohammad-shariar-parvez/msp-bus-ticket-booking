@@ -9,7 +9,7 @@ const Bus = ({ bus }) => {
 			<hr />
 			<div className="d-flex justify-content-between gap-3">
 				<div >
-					<p className="text-sm">From </p>
+					<span className="text-sm">From </span>
 					<p className="text-sm"> {bus.from}</p>
 				</div>
 				<div >

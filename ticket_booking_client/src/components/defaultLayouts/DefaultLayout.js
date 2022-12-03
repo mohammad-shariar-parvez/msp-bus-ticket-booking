@@ -67,7 +67,7 @@ const DefaultLayout = ({ children }) => {
 
 	return (
 		<div className='layout-parent' >
-			<div className='sidebar'>
+			<div className={`${user?.isAdmin ? 'sidebar-admin' : 'sidebar'}`}>
 				<div className='sidear-header' >
 					{!colapsed && <h1 className='logo' >TicketBook</h1>}
 

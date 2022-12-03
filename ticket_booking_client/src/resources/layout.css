@@ -31,6 +31,17 @@
 	flex-direction: column;
 }
 
+.sidebar-admin {
+
+	/* align-items: center; */
+	background-color: rgb(132, 140, 24);
+	border-radius: 5px;
+	display: flex;
+	justify-content: start;
+	padding: 15px 20px;
+	flex-direction: column;
+}
+
 .logo {
 	color: white;
 }

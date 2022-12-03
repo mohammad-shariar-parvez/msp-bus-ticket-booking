@@ -13,6 +13,10 @@ Input {
 
 }
 
+/* .h-screen {
+	height: 100vh;
+} */
+
 /* .h-screen>Form {
 	width: 300px;
 	padding: 19px;
@@ -103,4 +107,16 @@ h1, p {
 table {
 
 	border: 1px solid rgb(174, 174, 174) !important;
+}
+
+.profile-container {
+	padding: 25px;
+	height: 100vh;
+	display: flex;
+
+}
+
+.profile-container span {
+	color: gray;
+	font-size: 30px;
 }
