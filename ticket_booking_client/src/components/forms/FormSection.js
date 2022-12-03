@@ -7,4 +7,5 @@ export const FormSection = styled.div`
 	border: 2px solid gray;
 	box-shadow: 0 0 2px gray;
 	border-radius: 15px;
+	background-color: white;
 `;

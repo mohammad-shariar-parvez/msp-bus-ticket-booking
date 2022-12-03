@@ -86,7 +86,7 @@ const Bookings = () => {
 			render: (text, record) => (
 				<div>
 					<p
-						className="text-md underline"
+						className="text-md underline text-secondary "
 						onClick={() => {
 							setSelectedBooking(record);
 							setShowPrintModal(true);

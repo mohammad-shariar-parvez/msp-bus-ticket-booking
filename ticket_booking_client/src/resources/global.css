@@ -1,15 +1,16 @@
 /* heights and width */
 
 Input {
-	height: 40px;
-	border: 2px solid rgb(209, 206, 206) !important;
+	height: 40px !important;
+	/* border: 2px solid rgb(209, 206, 206) !important; */
 	width: 5%;
-	padding: 5px;
+	/* padding: 5px; */
 	background-color: white !important;
 }
 
 .main-bg {
 	background: #F6F9FC;
+
 }
 
 /* .h-screen>Form {
@@ -38,6 +39,15 @@ Input {
 .text-md {
 	font-size: 18px;
 }
+
+.text-primary {
+	color: var(--primary) !important
+}
+
+.text-secondary {
+	color: #D23F57 !important;
+}
+
 
 .btn {
 	background-color: var(--primary);
@@ -88,4 +98,9 @@ h1, p {
 	box-shadow: 0 0 1px gray;
 	border-radius: 0;
 	padding: 10px;
+}
+
+table {
+
+	border: 1px solid rgb(174, 174, 174) !important;
 }

@@ -71,7 +71,7 @@ const DefaultLayout = ({ children }) => {
 				<div className='sidear-header' >
 					{!colapsed && <h1 className='logo' >TicketBook</h1>}
 
-					<h1 className='role'>{user?.name}<br />Role: {user?.isAdmin ? 'Admin' : 'User'}</h1>
+					{!colapsed && <p className='role'>{user?.name}<br />Role: {user?.isAdmin ? 'Admin' : 'User'}</p>}
 				</div>
 				<div className='d-flex flex-column gap-2 menu'>
 					{menuToBeRendered.map((item, index) => {

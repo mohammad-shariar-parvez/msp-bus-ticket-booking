@@ -105,7 +105,7 @@ const AdminBuses = () => {
 
 	return (
 		<div>
-			<div className='d-flex justify-content-between'>
+			<div className='d-flex justify-content-between align-items-center'>
 				<PageTitle title='Buses' />
 				<Button addBuss onClick={() => setShowBusForm(true)} >Add Bus</Button>
 

@@ -40,7 +40,7 @@ const Register = () => {
 				<Form layout='vertical'
 					onFinish={onFinish}
 					name="basic" autoComplete="off">
-					<Form.Item label='Name' name='name' onFinish={onFinish}>
+					<Form.Item label='Name' name='name' onFinish={onFinish} rules={[{ required: true, message: 'Please input your name!' }]} >
 						<Input />
 					</Form.Item>
 					<Form.Item
@@ -58,7 +58,8 @@ const Register = () => {
 
 
 					>
-						<Input type='password' autoComplete="new-password" />
+						<Input.Password autoComplete="new-password" />
+						{/* <Input type='password' autoComplete="new-password" /> */}
 					</Form.Item>
 					<div className='d-flex justify-content-between align-items-center'>
 						<Link to='/login'>Login</Link>

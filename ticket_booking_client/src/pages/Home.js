@@ -79,8 +79,8 @@ const Home = () => {
 	}, []);
 	return (
 		<div >
-			<div className='my-3  px-2 py-3'>
-				<Row gutter={10} align='center' >
+			<div className='mt-1 mb-2   py-1'>
+				<Row gutter={[10, 10]} align='center' >
 					<Col lg={6} sm={24}>
 						<Input
 

@@ -132,7 +132,7 @@ const AdminUsers = () => {
 
 	return (
 		<div>
-			<div className='d-flex justify-content-between'>
+			<div className='d-flex justify-content-between my-2'>
 				<PageTitle title='Users' />
 			</div>
 			<Table dataSource={users} columns={columns} />

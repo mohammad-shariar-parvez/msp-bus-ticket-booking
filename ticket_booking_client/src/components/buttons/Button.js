@@ -8,14 +8,16 @@ export const Button = styled.button`
 		(props.print && 'blue') ||
 		(props.cancle && 'orrange') ||
 		(props.reset && 'gray') ||
+		(props.clear && 'transparent') ||
 		(props.search && 'skyBlue') || '#D23F57'} ;
-	color: white;
+	color:  ${props => (props.clear && ' #D23F57' || 'white')};
 	border-radius: ${props => ((props.search || props.clear) && '0') || '5px'} ;
 
 	padding: ${props => ((props.search || props.clear) && '7px 20px') || '10px 20px'} ;
 	margin:${props => ((props.search || props.clear) && '0px') || '10px'} ;
 
-	cursor: pointer;
-	border:none ;
-	cursor: disabled && not-allowed;
+
+	border: ${props => (props.clear && ' 2px solid #D23F57' || 'none')};
+	${props => (props.disabled && 'not-allowed' || ' pointer ')};
+	
 `;

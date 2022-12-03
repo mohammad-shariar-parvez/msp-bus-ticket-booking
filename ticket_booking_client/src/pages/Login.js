@@ -6,6 +6,7 @@ import { Authentication } from '../components/forms/Authentication';
 import { FormSection } from '../components/forms/FormSection';
 import { useDispatch } from 'react-redux';
 import { HideLoading, Showloading } from '../redux/alertsSlice';
+import '../resources/auth.css';
 
 
 
@@ -37,29 +38,32 @@ const Login = () => {
 	};
 
 	return (
-		<Authentication >
-			<FormSection login>
-				<h1 className='text-md' > Login</h1>
+		<div >
+			<Authentication >
+				<FormSection login>
+					<h1 className='text-md' > Login</h1>
+					<hr />
+					<Form layout='vertical'
+						onFinish={onFinish}
+						name="basic"
+						autoComplete="off">
+						<Form.Item label='Email' name='email' rules={[{ required: true, message: 'Please input your email !' }]}>
+							<Input />
+						</Form.Item>
+						<Form.Item label='Password' name='password' rules={[{ required: true, message: 'Please input your password!' }]}>
+							<Input.Password />
+						</Form.Item>
+						<div className='d-flex justify-content-between  align-items-center'>
+							<Link to='/Register'>Register</Link>
+							<Button login htmlType="submit" >Login</Button>
+						</div>
+					</Form>
+				</FormSection>
 
-				<Form layout='vertical'
-					onFinish={onFinish}
-					name="basic"
-					autoComplete="off">
-					<Form.Item label='Email' name='email'>
-						<Input />
-					</Form.Item>
-					<Form.Item label='Password' name='password'>
-						<Input.Password />
-					</Form.Item>
-					<div className='d-flex justify-content-between  align-items-center'>
-						<Link to='/Register'>Register</Link>
-						<Button login htmlType="submit" >Login</Button>
-					</div>
-				</Form>
-			</FormSection>
 
+			</Authentication >
+		</div>
 
-		</Authentication >
 	);
 };
 

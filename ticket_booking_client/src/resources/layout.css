@@ -5,7 +5,7 @@
 	padding: 15px;
 	height: 100vh;
 	gap: 20px;
-	overflow-x: hidden !important;
+	/* overflow-x: hidden !important; */
 	/* overflow-y: scroll !important; */
 }
 
@@ -88,7 +88,7 @@
 }
 
 .content {
-	padding: 10px 0px;
+	padding: 0px 0px 10px 0px;
 	overflow-y: scroll !important;
 	overflow-x: hidden !important;
 	height: 85%;
