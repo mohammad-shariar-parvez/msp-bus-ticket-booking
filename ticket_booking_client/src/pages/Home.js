@@ -10,7 +10,7 @@ import { axiosInstance } from '../helpers/axiosInstance';
 import Bus from '../components/buses/Bus';
 import { Button } from '../components/buttons/Button';
 
-console.log("AXIOSSSSSS", axiosInstance);
+
 
 
 
@@ -47,13 +47,13 @@ const Home = () => {
 		getBuses();
 	};
 
-	console.log("Search is", filters);
+
 
 	const getBuses = async (all = {}) => {
 
 		try {
 			dispatch(Showloading());
-			const response = await axios.post('http://localhost:5001/api/buses/get-all-buses', all, {
+			const response = await axios.post('https://localhost5001/api/buses/get-all-buses', all, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('token')}`
 				}

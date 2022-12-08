@@ -43,12 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "options": {
-    "allowedHosts": [
-      "https://localhost:5001/",
-      ".localhost"
-    ],
-    "proxy": "https://localhost:5001/"
   }
 }

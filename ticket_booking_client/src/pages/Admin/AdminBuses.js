@@ -19,7 +19,7 @@ const AdminBuses = () => {
 			dispatch(Showloading());
 			const response = await axiosInstance.post('http://localhost:5001/api/buses/get-all-buses', {});
 			dispatch(HideLoading());
-			console.log("brom broken update", response);
+
 			//we can add store
 			if (response.data.success) {
 				setBuses(response.data.data);

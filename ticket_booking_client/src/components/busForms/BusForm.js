@@ -15,7 +15,7 @@ const BusForm = ({ showBusForm, setShowBusForm, type = 'add', getData, selectedB
 		setShowBusForm(false);
 	};
 
-	console.log("SELECTED BUSS IS", selectedBus);
+
 
 	const onFinish = async (values) => {
 
@@ -24,11 +24,11 @@ const BusForm = ({ showBusForm, setShowBusForm, type = 'add', getData, selectedB
 			dispatch(Showloading());
 			let response = null;
 			if (type === 'add') {
-				response = await axiosInstance.post("http://localhost:5001/api/buses/add-bus", values);
+				response = await axiosInstance.post("https://kind-ox-housecoat.cyclic.app/api/buses/add-bus", values);
 			}
 			else {
 
-				response = await axiosInstance.post("http://localhost:5001/api/buses/update-bus", { ...values, _id: selectedBus._id });
+				response = await axiosInstance.post("https://kind-ox-housecoat.cyclic.app/api/buses/update-bus", { ...values, _id: selectedBus._id });
 			}
 			if (response.data.success) {
 				message.success(response.data.message);

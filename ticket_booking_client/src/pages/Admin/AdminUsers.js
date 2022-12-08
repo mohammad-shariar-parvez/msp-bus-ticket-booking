@@ -33,7 +33,7 @@ const AdminUsers = () => {
 	};
 
 	const updateUserPermission = async (user, action) => {
-		console.log("Neeeeeew user isss", user);
+
 		let payload = null;
 		if (action == 'make-admin') {
 			payload = {
@@ -65,7 +65,7 @@ const AdminUsers = () => {
 			dispatch(Showloading());
 			const response = await axiosInstance.post('http://localhost:5001/api/users/update-user-permissions', payload);
 			dispatch(HideLoading());
-			console.log(" User Permission response", response);
+
 			//we can add store
 			if (response.data.success) {
 				message.success("Made Admin Successfully");
@@ -95,7 +95,7 @@ const AdminUsers = () => {
 			title: "Status",
 			dataIndex: "",
 			render: (data) => {
-				console.log("DATTAAAAAAAAA", data);
+
 				return data.isBlocked ? "Blocked" : "Active";
 			}
 		},

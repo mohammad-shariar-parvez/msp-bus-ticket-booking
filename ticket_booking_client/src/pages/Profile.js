@@ -7,7 +7,7 @@ const Profile = () => {
 	const dispatch = useDispatch();
 	// const { loading } = useSelector(state => state.alerts);
 	const { user } = useSelector(state => state.users);
-	console.log("USER FROM Profile", user);
+
 	return (
 		<div className='profile-container ' >
 			<Row>

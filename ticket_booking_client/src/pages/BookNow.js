@@ -69,7 +69,7 @@ const BookNow = () => {
 	};
 
 	const onToken = async (token) => {
-		// console.log("TOKEN IS ", token);
+
 		try {
 			dispatch(Showloading());
 			const response = await axiosInstance.post('http://localhost:5001/api/bookings/make-payment', {

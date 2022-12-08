@@ -10,18 +10,18 @@ const AdminHome = () => {
 	const [values, setValue] = useState({ ...CONTACT_FORM_INIT_STATE });
 	const { name, email, group } = values;
 	const handleForm = (e) => {
-		console.log("handle form", e.target);
+
 		setValue({ ...values, [e.target.name]: e.target.value });
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("Submitted e", e.target.values);
+
 		setValue({ ...CONTACT_FORM_INIT_STATE });
 	};
 
 	const handleChange = (e) => {
-		console.log("Changed", e.target.value);
+
 		setValue({ ...values, [e.target.name]: e.target.value });
 	};
 

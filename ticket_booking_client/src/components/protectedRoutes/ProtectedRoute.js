@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
 	const dispatch = useDispatch();
 	// const { loading } = useSelector(state => state.alerts);
 	const { user } = useSelector(state => state.users);
-	console.log("USER FROM OUTSIDE", user);
+
 
 	// const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
@@ -20,7 +20,7 @@ const ProtectedRoute = ({ children }) => {
 
 	const validateToken = async () => {
 		try {
-			console.log("IM fro FUNCTIONNN");
+
 			dispatch(Showloading());
 			const response = await axios.post("http://localhost:5001/api/users/get-user-by-id", {}, {
 				headers: {
