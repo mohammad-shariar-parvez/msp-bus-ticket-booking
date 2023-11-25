@@ -17,7 +17,7 @@ const Profile = () => {
 						<p className='text-xl' ><span>Email:</span> {user.email}</p>
 						{user.isAdmin ? <p className='text-xl' ><span>Role:</span> Admin</p> : <p className='text-xl' ><span>Role:</span> User</p>}
 
-						{user.isBlocked ? <p className='text-xl' ><span>Status:</span> Active</p> : <p className='text-xl' ><span>Status:</span> Blocked</p>}
+						{!user.isBlocked ? <p className='text-xl' ><span>Status:</span> Active</p> : <p className='text-xl' ><span>Status:</span> Blocked</p>}
 
 						<p className='text-xl'><span>Created on:</span>  {moment(user.createdAt).format('DD/MM/YYYY')
 						}</p>

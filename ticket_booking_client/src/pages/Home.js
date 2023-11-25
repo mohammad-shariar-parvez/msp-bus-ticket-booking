@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 
@@ -33,7 +34,7 @@ const Home = () => {
 				tempFilters[key] = filters[key];
 			}
 		});
-
+		console.log("TEMO FILTER", tempFilters);
 		getBuses(tempFilters);
 	};
 
@@ -50,14 +51,16 @@ const Home = () => {
 
 
 	const getBuses = async (all = {}) => {
-
+		console.log("CHECK PARAMS", all);
 		try {
 			dispatch(Showloading());
-			const response = await axios.post('https://localhost5001/api/buses/get-all-buses', all, {
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem('token')}`
-				}
-			});
+			// console.log("CHECK TOKEN", `Bearer ${localStorage.getItem('token')}`);
+			// const response = await axios.post('https://localhost5001/api/buses/get-all-buses', all, {
+			// 	headers: {
+			// 		Authorization: `Bearer ${localStorage.getItem('token')}`
+			// 	}
+			// });
+			const response = await axiosInstance.post('http://localhost:5001/api/buses/get-all-buses', all);
 			dispatch(HideLoading());
 
 			//we can add store

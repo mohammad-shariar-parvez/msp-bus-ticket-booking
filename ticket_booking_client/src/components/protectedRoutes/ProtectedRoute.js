@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, } from 'react';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -72,7 +73,7 @@ const ProtectedRoute = ({ children }) => {
 			}
 		}
 	}, [user]);
-	// console.log("THIS IS USER AFAILABLE", user);
+
 
 	return (
 		<div>

@@ -1,5 +1,5 @@
-import { Checkbox, Form, Input, message } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Form, Input, message } from 'antd';
+import { Link, } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '../components/buttons/Button';
 import { Authentication } from '../components/forms/Authentication';
@@ -11,7 +11,6 @@ import '../resources/auth.css';
 
 
 const Login = () => {
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const onFinish = async (values) => {
@@ -20,8 +19,8 @@ const Login = () => {
 		try {
 			dispatch(Showloading());
 			const response = await axios.post("http://localhost:5001/api/users/login", values);
+			console.log("DATA<DATA", response.data.data);
 			dispatch(HideLoading());
-			// console.log('My registration message', response);
 			if (response.data.success) {
 				message.success(response.data.message);
 				localStorage.setItem('token', response.data.data);

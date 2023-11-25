@@ -35,25 +35,25 @@ const AdminUsers = () => {
 	const updateUserPermission = async (user, action) => {
 
 		let payload = null;
-		if (action == 'make-admin') {
+		if (action === 'make-admin') {
 			payload = {
 				...user,
 				isAdmin: true
 			};
 		}
-		else if (action == 'remove-admin') {
+		else if (action === 'remove-admin') {
 			payload = {
 				...user,
 				isAdmin: false
 			};
 		}
-		else if (action == 'block') {
+		else if (action === 'block') {
 			payload = {
 				...user,
 				isBlocked: true
 			};
 		}
-		else if (action == 'unblock') {
+		else if (action === 'unblock') {
 			payload = {
 				...user,
 				isBlocked: false
@@ -68,7 +68,7 @@ const AdminUsers = () => {
 
 			//we can add store
 			if (response.data.success) {
-				message.success("Made Admin Successfully");
+				message.success("User Updated Successfully");
 				getUsers();
 			}
 			else {

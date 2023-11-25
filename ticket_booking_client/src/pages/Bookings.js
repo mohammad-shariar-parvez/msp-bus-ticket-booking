@@ -20,6 +20,7 @@ const Bookings = () => {
 
 	// console.log("SSEELECTED BOOKING", selectedBooking);
 	// const axiosInstance = axios.create({
+	//
 	// 	headers: {
 	// 		Authorization: `Bearer ${localStorage.getItem('token')}`
 	// 	}
@@ -29,7 +30,7 @@ const Bookings = () => {
 
 		try {
 			dispatch(Showloading());
-			const response = await axiosInstance.post('http://localhost:5001/api/bookings/get-bookings-by-user-id', {});
+			const response = await axiosInstance.get('http://localhost:5001/api/bookings/get-bookings-by-user-id');
 			dispatch(HideLoading());
 
 
