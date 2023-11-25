@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+//model
 const bookingSchema = new mongoose.Schema(
 	{
 		bus: {
